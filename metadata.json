@@ -1,0 +1,8 @@
+{
+  "name": "TheLabWork — Coaching Centre Operations",
+  "description": "Attendance, fees, records, and notices in one warm editorial workspace built for private coaching centres in India.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

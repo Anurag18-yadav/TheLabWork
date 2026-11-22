@@ -1,0 +1,864 @@
+<!DOCTYPE html><html lang="en" class="scroll-smooth"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TheLabWork — Boutique Digital Design &amp; Systems Studio</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'surface': '#F7F4EC',
+            'surface-container-low': '#FBF9F4',
+            'surface-container': '#EAE3D2',
+            'on-surface': '#1A1A1A',
+            'on-surface-variant': '#57534B',
+            'primary': '#1A1A1A',
+            'primary-hover': '#33312D',
+            'on-primary': '#FFFFFF',
+            'brand-amber': '#F39200',
+            'brand-amber-large': '#C27000',
+            'brand-amber-ink': '#9A5A00',
+            'cream-tape': '#E8DFCA',
+            'outline': '#57534B',
+            'outline-variant': '#DDD7C8',
+            'inverse-surface': '#1A1A1A',
+            'inverse-on-surface': '#F7F4EC',
+            'inverse-muted': '#C8C3B8',
+          },
+          borderRadius: {
+            'sm': '6px',
+            'DEFAULT': '12px',
+            'md': '12px',
+            'card': '18px',
+            'full': '9999px',
+          },
+          spacing: {
+            'gutter-xs': '4px',
+            'gutter-sm': '8px',
+            'gutter-md': '16px',
+            'gutter-lg': '24px',
+            'gutter-xl': '32px',
+            'section-sm': '48px',
+            'section': '72px',
+            'section-lg': '96px',
+            'page-margin': '24px',
+          },
+          fontFamily: {
+            'display': ['"Crimson Pro"', 'Georgia', 'serif'],
+            'headline': ['"Crimson Pro"', 'Georgia', 'serif'],
+            'title': ['"Commissioner"', 'sans-serif'],
+            'body': ['"Commissioner"', 'sans-serif'],
+            'label': ['"Commissioner"', 'sans-serif'],
+            'mono': ['"Source Code Pro"', 'monospace'],
+            'handwritten': ['"Patrick Hand"', 'cursive'],
+          },
+          fontSize: {
+            'display-xl': ['96px', { lineHeight: '91px', letterSpacing: '-2.88px', fontWeight: '500' }],
+            'display-xl-mobile': ['52px', { lineHeight: '49px', letterSpacing: '-1.56px', fontWeight: '500' }],
+            'display-lg': ['64px', { lineHeight: '68px', letterSpacing: '-1.4px', fontWeight: '500' }],
+            'display-lg-mobile': ['32px', { lineHeight: '38px', letterSpacing: '-0.6px', fontWeight: '500' }],
+            'headline-lg': ['42px', { lineHeight: '48px', letterSpacing: '-0.7px', fontWeight: '500' }],
+            'headline-lg-mobile': ['30px', { lineHeight: '36px', letterSpacing: '-0.4px', fontWeight: '500' }],
+            'headline-md': ['28px', { lineHeight: '34px', letterSpacing: '-0.3px', fontWeight: '500' }],
+            'headline-sm': ['22px', { lineHeight: '28px', letterSpacing: '-0.2px', fontWeight: '500' }],
+            'title-lg': ['18px', { lineHeight: '26px', letterSpacing: '0px', fontWeight: '500' }],
+            'body-lg': ['17px', { lineHeight: '27px', letterSpacing: '0px', fontWeight: '400' }],
+            'body-md': ['15px', { lineHeight: '23px', letterSpacing: '0px', fontWeight: '400' }],
+            'label-lg': ['14px', { lineHeight: '20px', letterSpacing: '0.1px', fontWeight: '500' }],
+            'label-sm': ['12px', { lineHeight: '16px', letterSpacing: '1.1px', fontWeight: '600' }],
+            'mono-md': ['13px', { lineHeight: '18px', letterSpacing: '0.2px', fontWeight: '500' }],
+          },
+          boxShadow: {
+            'card': '0 12px 32px -12px rgba(26, 26, 26, 0.10)',
+            'float': '0 20px 44px -12px rgba(27, 59, 43, 0.24)',
+            'note': '0 10px 24px -8px rgba(26, 26, 26, 0.14)',
+          },
+        },
+      },
+    };
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Commissioner:wght@400;500;600&amp;family=Crimson+Pro:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&amp;family=Patrick+Hand&amp;family=Source+Code+Pro:wght@500&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet">
+  <style>.material-symbols-outlined, .material-symbols-rounded, .material-symbols-sharp, .material-icons { display: inline-block; width: 1em; height: 1em; line-height: 1 !important; box-sizing: content-box; overflow: hidden; white-space: nowrap; direction: ltr; vertical-align: middle; }</style>
+</head>
+<body class="bg-surface text-on-surface font-body antialiased selection:bg-brand-amber selection:text-on-surface">
+  <div class="min-h-[1024px] flex flex-col" data-stitch-vh="min-h-[1024px]===min-h-screen">
+
+    <!-- FLOATING PILL NAVIGATION -->
+    <header class="sticky top-gutter-md z-40 px-page-margin pt-gutter-md">
+      <div class="max-w-6xl mx-auto rounded-full bg-surface-container-low border border-outline-variant shadow-card px-gutter-lg py-gutter-sm flex items-center justify-between gap-gutter-md">
+        <a href="#top" class="flex items-center gap-gutter-sm text-on-surface shrink-0">
+          <span class="w-11 h-11 rounded-full bg-white border border-brand-amber flex items-center justify-center shrink-0 overflow-hidden" aria-hidden="true">
+            <svg class="w-full h-full" viewBox="0 0 64 64" fill="none">
+              <text x="32" y="30" text-anchor="middle" font-family="Georgia, &#39;Crimson Pro&#39;, serif" font-size="9.5" font-weight="700" fill="#1A1A1A">The<tspan fill="#F39200">Lab</tspan>Work</text>
+              <text x="32" y="38" text-anchor="middle" font-family="Commissioner, sans-serif" font-size="2.6" font-weight="600" letter-spacing="0.35" fill="#1A1A1A">WE DON&#39;T JUST IMAGINE.</text>
+              <text x="32" y="42" text-anchor="middle" font-family="Commissioner, sans-serif" font-size="2.6" font-weight="600" letter-spacing="0.35" fill="#1A1A1A">WE ENGINEER</text>
+            </svg>
+          </span>
+          <span class="flex flex-col">
+            <span data-design-text-token="headline-sm" class="font-headline text-headline-sm tracking-tight text-on-surface leading-none">The<span class="text-brand-amber-ink">Lab</span>Work</span>
+            <span data-design-text-token="label-sm" class="hidden sm:block font-label text-label-sm text-on-surface-variant leading-tight">We don&#39;t just imagine. We engineer.</span>
+          </span>
+        </a>
+
+        <nav aria-label="Primary" class="hidden md:flex items-center gap-gutter-xl">
+          <a href="#features" class="font-label text-label-lg text-on-surface-variant hover:text-on-surface transition-colors">
+            <span data-design-text-token="label-lg">Features</span>
+          </a>
+          <a href="#how-it-works" class="font-label text-label-lg text-on-surface-variant hover:text-on-surface transition-colors">
+            <span data-design-text-token="label-lg">How it works</span>
+          </a>
+          <a href="#pricing" class="font-label text-label-lg text-on-surface-variant hover:text-on-surface transition-colors">
+            <span data-design-text-token="label-lg">Pricing</span>
+          </a>
+          <a href="#faq" class="font-label text-label-lg text-on-surface-variant hover:text-on-surface transition-colors">
+            <span data-design-text-token="label-lg">FAQ</span>
+          </a>
+        </nav>
+
+        <a href="#contact" data-component-id="office-button-primary" data-component-type="button" data-component-variant="primary" class="inline-flex items-center justify-center gap-gutter-sm rounded-full bg-primary text-on-primary px-gutter-lg py-3 font-label text-label-lg transition-colors hover:bg-primary-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary shrink-0">
+          <span data-design-text-token="label-lg">Book a free demo</span>
+          <span class="material-symbols-outlined text-title-lg text-brand-amber" aria-hidden="true">arrow_forward</span>
+        </a>
+      </div>
+    </header>
+
+    <main id="top" class="flex-1">
+
+      <!-- HERO SECTION (OVERSIZED EDITORIAL POSTER LAYOUT) -->
+      <section class="max-w-6xl mx-auto px-page-margin pt-section-sm pb-section md:pt-section md:pb-section-lg overflow-hidden">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-gutter-xl md:gap-gutter-lg items-center">
+
+          <!-- Left Column: Oversized 4-Line Stacked Headline -->
+          <div class="md:col-span-7 flex flex-col gap-gutter-md">
+            <div class="flex items-center gap-gutter-sm">
+              <span class="w-6 h-px bg-on-surface shrink-0" aria-hidden="true"></span>
+              <p class="font-label text-label-sm uppercase tracking-widest text-on-surface">
+                <span data-design-text-token="label-sm">FOR COACHING CENTRES</span>
+              </p>
+            </div>
+
+            <h1 class="font-headline text-display-xl-mobile md:text-display-xl text-on-surface">
+              <span data-design-text-token="display-xl" class="block">Run your</span>
+              <span data-design-text-token="display-xl" class="block">coaching</span>
+              <span data-design-text-token="display-xl" class="block"><em class="italic text-brand-amber-large font-normal">centre</em> with</span>
+              <span data-design-text-token="display-xl" class="block">less paperwork.</span>
+            </h1>
+
+            <p class="font-body text-body-lg text-on-surface-variant max-w-xl text-pretty pt-gutter-xs">
+              <span data-design-text-token="body-lg">Attendance, fees, records and notices in one app, on your phone. <strong class="font-semibold text-on-surface">Built for private coaching centres in India. Set up with your own data in days, not months.</strong></span>
+            </p>
+
+            <div class="flex flex-wrap items-center gap-gutter-md pt-gutter-sm">
+              <a href="#how-it-works" data-component-id="office-button-primary" data-component-type="button" data-component-variant="primary" class="inline-flex items-center justify-center rounded-full bg-primary text-on-primary px-gutter-lg py-3 font-label text-label-lg transition-colors hover:bg-primary-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">
+                <span data-design-text-token="label-lg">See how it works</span>
+              </a>
+
+              <a href="#contact" data-component-id="office-button-secondary" data-component-type="button" data-component-variant="secondary" class="inline-flex items-center justify-center rounded-full border border-primary text-on-surface bg-transparent px-gutter-lg py-3 font-label text-label-lg transition-colors hover:bg-surface-container focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">
+                <span data-design-text-token="label-lg">Book a free demo</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Right Column: Vertical Tablet Frame + Overlapping Circles + Sticky Note -->
+          <div class="md:col-span-5 relative py-gutter-xl flex items-center justify-center">
+            <div class="relative w-full max-w-sm mx-auto px-gutter-md pt-gutter-md pb-gutter-xl">
+              <!-- Soft Warm Cream Circle Behind Left/Bottom -->
+              <div class="absolute -left-4 bottom-8 w-56 h-56 rounded-full bg-surface-container pointer-events-none" aria-hidden="true"></div>
+
+              <!-- Tall Vertical Deep Black Tablet Card -->
+              <div class="relative z-10 rotate-2 rounded-card border-8 border-surface-container-low bg-primary text-on-primary p-gutter-xl shadow-float flex flex-col justify-between gap-gutter-xl min-h-[420px] overflow-hidden">
+                <!-- Vibrant Warm Orange Circle Overlapping Bottom-Right Side -->
+                <div class="absolute -right-12 -bottom-10 w-52 h-52 rounded-full bg-brand-amber pointer-events-none" aria-hidden="true"></div>
+
+                <div class="relative z-10 flex items-center justify-between">
+                  <span data-design-text-token="label-sm" class="font-label text-label-sm uppercase tracking-wider text-inverse-muted">THE LAB WORK / PRODUCT OVERVIEW</span>
+                </div>
+
+                <h2 class="relative z-10 font-headline text-headline-lg-mobile md:text-headline-lg text-on-primary leading-tight">
+                  <span data-design-text-token="headline-lg">Attendance, fees and notices. One screen.</span>
+                </h2>
+
+                <div class="relative z-10 pt-gutter-md">
+                  <a href="#features" class="inline-flex items-center gap-gutter-xs rounded-full bg-surface-container-low text-primary px-gutter-md py-2 font-label text-label-sm uppercase tracking-wider hover:bg-surface-container transition-colors">
+                    <span data-design-text-token="label-sm">See the app ↗</span>
+                  </a>
+                </div>
+              </div>
+
+              <!-- White Tilted Sticky-Note Card at Bottom-Left with Translucent Beige Tape -->
+              <div class="relative z-20 -mt-10 -ml-2 w-60 -rotate-3 rounded-sm bg-surface-container-low border border-outline-variant p-gutter-md pt-gutter-lg shadow-note">
+                <div class="absolute -top-3 left-1/2 -translate-x-1/2 w-16 h-5 bg-cream-tape/90 border border-outline-variant/60 rotate-1 pointer-events-none" aria-hidden="true"></div>
+                <p class="font-handwritten text-headline-sm text-on-surface leading-snug">
+                  <span data-design-text-token="headline-sm">We don&#39;t just imagine. We engineer.</span>
+                </p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- FULL-WIDTH 4-COLUMN METRICS STRIP -->
+      <section aria-label="Platform highlights" class="w-full bg-surface border-t border-b border-outline-variant">
+        <div class="max-w-6xl mx-auto px-page-margin">
+          <div class="grid grid-cols-1 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-outline-variant">
+            <div class="py-10 md:pr-gutter-lg flex flex-col gap-gutter-xs">
+              <p class="font-headline text-headline-md text-on-surface">
+                <span data-design-text-token="headline-md"><span class="text-brand-amber-large">Student</span> app</span>
+              </p>
+              <p class="font-body text-body-md text-on-surface-variant">
+                <span data-design-text-token="body-md">attendance, fees, and notices in one place</span>
+              </p>
+            </div>
+
+            <div class="py-10 md:px-gutter-lg flex flex-col gap-gutter-xs">
+              <p class="font-headline text-headline-md text-on-surface">
+                <span data-design-text-token="headline-md"><span class="text-brand-amber-large">Teacher</span> panel</span>
+              </p>
+              <p class="font-body text-body-md text-on-surface-variant">
+                <span data-design-text-token="body-md">mark daily batches in under 30 seconds</span>
+              </p>
+            </div>
+
+            <div class="py-10 md:px-gutter-lg flex flex-col gap-gutter-xs">
+              <p class="font-headline text-headline-md text-on-surface">
+                <span data-design-text-token="headline-md"><span class="text-brand-amber-large">Owner</span> dashboard</span>
+              </p>
+              <p class="font-body text-body-md text-on-surface-variant">
+                <span data-design-text-token="body-md">live fee collection and pending dues</span>
+              </p>
+            </div>
+
+            <div class="py-10 md:pl-gutter-lg flex flex-col gap-gutter-xs">
+              <p class="font-headline text-headline-md text-on-surface">
+                <span data-design-text-token="headline-md"><span class="text-brand-amber-large">WhatsApp</span> automation</span>
+              </p>
+              <p class="font-body text-body-md text-on-surface-variant">
+                <span data-design-text-token="body-md">instant fee reminders and parent alerts</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 1: THE PROBLEM (PAIN POINTS GRID) -->
+      <section class="max-w-6xl mx-auto px-page-margin py-section-sm md:py-section">
+        <div class="max-w-3xl flex flex-col gap-gutter-sm mb-gutter-xl">
+          <div class="flex items-center gap-gutter-sm">
+            <span class="w-6 h-px bg-on-surface shrink-0" aria-hidden="true"></span>
+            <p class="font-label text-label-sm uppercase tracking-widest text-on-surface">
+              <span data-design-text-token="label-sm">THE PROBLEM</span>
+            </p>
+          </div>
+          <h2 class="font-headline text-headline-lg-mobile md:text-headline-lg text-on-surface text-balance">
+            <span data-design-text-token="headline-lg">Paper and scattered files cost you time and money every week.</span>
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter-lg items-stretch">
+          <article class="h-full rounded-card border border-outline-variant bg-surface-container-low p-gutter-xl shadow-card flex flex-col gap-gutter-md">
+            <span data-design-text-token="label-sm" class="font-label text-label-sm uppercase text-brand-amber-ink">Time</span>
+            <p class="font-headline text-headline-md text-on-surface text-pretty">
+              <span data-design-text-token="headline-md">Attendance on paper takes <span class="text-brand-amber-large">30 hours</span> every week.</span>
+            </p>
+          </article>
+
+          <article class="h-full rounded-card border border-outline-variant bg-surface-container-low p-gutter-xl shadow-card flex flex-col gap-gutter-md">
+            <span data-design-text-token="label-sm" class="font-label text-label-sm uppercase text-brand-amber-ink">Fees</span>
+            <p class="font-headline text-headline-md text-on-surface text-pretty">
+              <span data-design-text-token="headline-md">Missed fees are found at month end, when it&#39;s too late to chase.</span>
+            </p>
+          </article>
+
+          <article class="h-full rounded-card border border-outline-variant bg-surface-container-low p-gutter-xl shadow-card flex flex-col gap-gutter-md">
+            <span data-design-text-token="label-sm" class="font-label text-label-sm uppercase text-brand-amber-ink">Trust</span>
+            <p class="font-headline text-headline-md text-on-surface text-pretty">
+              <span data-design-text-token="headline-md">Parents wait 24 hours for an answer about their child.</span>
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- SECTION 2: WHAT CHANGES FOR YOU -->
+      <section class="max-w-6xl mx-auto px-page-margin py-section-sm md:py-section border-t border-outline-variant">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-gutter-xl items-start">
+          <div class="md:col-span-5 flex flex-col gap-gutter-sm">
+            <div class="flex items-center gap-gutter-sm">
+              <span class="w-6 h-px bg-on-surface shrink-0" aria-hidden="true"></span>
+              <p class="font-label text-label-sm uppercase tracking-widest text-on-surface">
+                <span data-design-text-token="label-sm">WHAT CHANGES</span>
+              </p>
+            </div>
+            <h2 class="font-headline text-headline-lg-mobile md:text-headline-lg text-on-surface">
+              <span data-design-text-token="headline-lg">What changes for you</span>
+            </h2>
+            <p class="font-body text-body-lg text-on-surface-variant text-pretty">
+              <span data-design-text-token="body-lg">Things you can see in your own centre.</span>
+            </p>
+          </div>
+
+          <ul class="md:col-span-7 border-t border-outline-variant">
+            <li class="border-b border-outline-variant py-gutter-lg flex items-center gap-gutter-md">
+              <span class="material-symbols-outlined text-title-lg text-brand-amber-ink shrink-0" aria-hidden="true">check_circle</span>
+              <span data-design-text-token="title-lg" class="font-title text-title-lg text-on-surface">Mark attendance for a full batch in 2 minutes</span>
+            </li>
+            <li class="border-b border-outline-variant py-gutter-lg flex items-center gap-gutter-md">
+              <span class="material-symbols-outlined text-title-lg text-brand-amber-ink shrink-0" aria-hidden="true">check_circle</span>
+              <span data-design-text-token="title-lg" class="font-title text-title-lg text-on-surface">See who has not paid fees, on one screen</span>
+            </li>
+            <li class="border-b border-outline-variant py-gutter-lg flex items-center gap-gutter-md">
+              <span class="material-symbols-outlined text-title-lg text-brand-amber-ink shrink-0" aria-hidden="true">check_circle</span>
+              <span data-design-text-token="title-lg" class="font-title text-title-lg text-on-surface">Send a notice to the whole class in one tap</span>
+            </li>
+            <li class="border-b border-outline-variant py-gutter-lg flex items-center gap-gutter-md">
+              <span class="material-symbols-outlined text-title-lg text-brand-amber-ink shrink-0" aria-hidden="true">check_circle</span>
+              <span data-design-text-token="title-lg" class="font-title text-title-lg text-on-surface">Find any student&#39;s record in under 30 seconds</span>
+            </li>
+            <li class="border-b border-outline-variant py-gutter-lg flex items-center gap-gutter-md">
+              <span class="material-symbols-outlined text-title-lg text-brand-amber-ink shrink-0" aria-hidden="true">check_circle</span>
+              <span data-design-text-token="title-lg" class="font-title text-title-lg text-on-surface">Check attendance and fee reports before you decide</span>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- SECTION 3: ROLES (ONE APP, THREE VIEWS) -->
+      <section class="max-w-6xl mx-auto px-page-margin py-section-sm md:py-section border-t border-outline-variant">
+        <div class="max-w-3xl flex flex-col gap-gutter-sm mb-gutter-xl">
+          <div class="flex items-center gap-gutter-sm">
+            <span class="w-6 h-px bg-on-surface shrink-0" aria-hidden="true"></span>
+            <p class="font-label text-label-sm uppercase tracking-widest text-on-surface">
+              <span data-design-text-token="label-sm">BUILT FOR EVERYONE</span>
+            </p>
+          </div>
+          <h2 class="font-headline text-headline-lg-mobile md:text-headline-lg text-on-surface">
+            <span data-design-text-token="headline-lg">One app, three views.</span>
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter-lg items-stretch">
+          <article class="h-full rounded-card border border-outline-variant bg-surface-container-low p-gutter-xl shadow-card flex flex-col gap-gutter-sm">
+            <span data-design-text-token="label-sm" class="font-label text-label-sm uppercase text-brand-amber-ink">Full control</span>
+            <h3 class="font-headline text-headline-md text-on-surface">
+              <span data-design-text-token="headline-md">Owner</span>
+            </h3>
+            <p class="font-body text-body-md text-on-surface-variant text-pretty">
+              <span data-design-text-token="body-md">Dashboard, fees, reports and every student and teacher record.</span>
+            </p>
+          </article>
+
+          <article class="h-full rounded-card border border-outline-variant bg-surface-container-low p-gutter-xl shadow-card flex flex-col gap-gutter-sm">
+            <span data-design-text-token="label-sm" class="font-label text-label-sm uppercase text-brand-amber-ink">Daily batches</span>
+            <h3 class="font-headline text-headline-md text-on-surface">
+              <span data-design-text-token="headline-md">Teacher</span>
+            </h3>
+            <p class="font-body text-body-md text-on-surface-variant text-pretty">
+              <span data-design-text-token="body-md">Your classes for the day, attendance in a tap, and a message to the class.</span>
+            </p>
+          </article>
+
+          <article class="h-full rounded-card border border-outline-variant bg-surface-container-low p-gutter-xl shadow-card flex flex-col gap-gutter-sm">
+            <span data-design-text-token="label-sm" class="font-label text-label-sm uppercase text-brand-amber-ink">Clear updates</span>
+            <h3 class="font-headline text-headline-md text-on-surface">
+              <span data-design-text-token="headline-md">Student</span>
+            </h3>
+            <p class="font-body text-body-md text-on-surface-variant text-pretty">
+              <span data-design-text-token="body-md">Attendance, notices and your own details, after login.</span>
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- SECTION 4: HOW IT WORKS (FOUR SIMPLE STEPS) -->
+      <section id="how-it-works" class="max-w-6xl mx-auto px-page-margin py-section-sm md:py-section border-t border-outline-variant">
+        <div class="max-w-3xl flex flex-col gap-gutter-sm mb-gutter-xl">
+          <div class="flex items-center gap-gutter-sm">
+            <span class="w-6 h-px bg-on-surface shrink-0" aria-hidden="true"></span>
+            <p class="font-label text-label-sm uppercase tracking-widest text-on-surface">
+              <span data-design-text-token="label-sm">SIMPLE WORKFLOW</span>
+            </p>
+          </div>
+          <h2 class="font-headline text-headline-lg-mobile md:text-headline-lg text-on-surface">
+            <span data-design-text-token="headline-lg">Four simple steps.</span>
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter-lg items-stretch">
+          <article class="h-full rounded-card border border-outline-variant bg-surface-container-low p-gutter-xl shadow-card flex flex-col gap-gutter-md">
+            <span data-design-text-token="headline-lg" class="font-headline text-headline-lg-mobile md:text-headline-lg text-brand-amber-large">01</span>
+            <p class="font-body text-body-lg font-medium text-on-surface text-pretty">
+              <span data-design-text-token="body-lg">Add students and teachers</span>
+            </p>
+          </article>
+
+          <article class="h-full rounded-card border border-outline-variant bg-surface-container-low p-gutter-xl shadow-card flex flex-col gap-gutter-md">
+            <span data-design-text-token="headline-lg" class="font-headline text-headline-lg-mobile md:text-headline-lg text-brand-amber-large">02</span>
+            <p class="font-body text-body-lg font-medium text-on-surface text-pretty">
+              <span data-design-text-token="body-lg">Teachers mark attendance on their phone</span>
+            </p>
+          </article>
+
+          <article class="h-full rounded-card border border-outline-variant bg-surface-container-low p-gutter-xl shadow-card flex flex-col gap-gutter-md">
+            <span data-design-text-token="headline-lg" class="font-headline text-headline-lg-mobile md:text-headline-lg text-brand-amber-large">03</span>
+            <p class="font-body text-body-lg font-medium text-on-surface text-pretty">
+              <span data-design-text-token="body-lg">Students and parents see attendance and notices</span>
+            </p>
+          </article>
+
+          <article class="h-full rounded-card border border-outline-variant bg-surface-container-low p-gutter-xl shadow-card flex flex-col gap-gutter-md">
+            <span data-design-text-token="headline-lg" class="font-headline text-headline-lg-mobile md:text-headline-lg text-brand-amber-large">04</span>
+            <p class="font-body text-body-lg font-medium text-on-surface text-pretty">
+              <span data-design-text-token="body-lg">You track fees and reports from one screen</span>
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- FEATURES (FORMERLY SELECTED STORIES) -->
+      <section id="features" class="max-w-6xl mx-auto px-page-margin py-section-sm md:py-section border-t border-outline-variant">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-gutter-md mb-gutter-xl">
+          <h2 class="font-headline text-headline-lg-mobile md:text-headline-lg text-on-surface">
+            <span data-design-text-token="headline-lg">Built for daily centre operations</span>
+          </h2>
+          <p class="font-body text-body-md text-on-surface-variant max-w-sm">
+            <span data-design-text-token="body-md">Everything teachers, students, and owners need—without Excel sheets or paper registers.</span>
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter-lg items-stretch">
+          <article class="h-full rounded-card border border-outline-variant bg-surface-container-low p-gutter-lg shadow-card flex flex-col justify-between gap-gutter-md">
+            <div class="flex flex-col gap-gutter-md">
+              <div class="w-full rounded-md bg-surface-container border border-outline-variant flex items-center justify-center p-5">
+                <div class="w-[232px] rounded-3xl border-[3px] border-primary bg-white p-3 flex flex-col justify-between gap-3">
+                  <div class="flex items-center gap-2 pb-2 border-b border-outline-variant">
+                    <span class="material-symbols-outlined text-[14px] text-on-surface" aria-hidden="true">arrow_back</span>
+                    <span class="font-body text-[11px] font-semibold text-on-surface tracking-tight">Batch A · Attendance</span>
+                  </div>
+                  <div class="flex flex-col gap-2">
+                    <div class="flex items-center justify-between py-0.5">
+                      <div class="flex items-center gap-2">
+                        <span class="w-5 h-5 rounded-full bg-surface-container border border-outline-variant flex items-center justify-center font-body text-[9px] font-semibold text-on-surface">A</span>
+                        <span class="font-body text-[11px] text-on-surface">Aarav Sharma</span>
+                      </div>
+                      <span class="w-7 h-4 rounded-full bg-primary p-0.5 flex items-center justify-end" aria-label="Present">
+                        <span class="w-3 h-3 rounded-full bg-on-primary"></span>
+                      </span>
+                    </div>
+                    <div class="flex items-center justify-between py-0.5">
+                      <div class="flex items-center gap-2">
+                        <span class="w-5 h-5 rounded-full bg-surface-container border border-outline-variant flex items-center justify-center font-body text-[9px] font-semibold text-on-surface">P</span>
+                        <span class="font-body text-[11px] text-on-surface">Priya Verma</span>
+                      </div>
+                      <span class="w-7 h-4 rounded-full bg-primary p-0.5 flex items-center justify-end" aria-label="Present">
+                        <span class="w-3 h-3 rounded-full bg-on-primary"></span>
+                      </span>
+                    </div>
+                    <div class="flex items-center justify-between py-0.5">
+                      <div class="flex items-center gap-2">
+                        <span class="w-5 h-5 rounded-full bg-surface-container border border-outline-variant flex items-center justify-center font-body text-[9px] font-semibold text-on-surface">R</span>
+                        <span class="font-body text-[11px] text-on-surface">Rohan Mehta</span>
+                      </div>
+                      <span class="w-7 h-4 rounded-full bg-brand-amber p-0.5 flex items-center justify-start" aria-label="Absent">
+                        <span class="w-3 h-3 rounded-full bg-primary"></span>
+                      </span>
+                    </div>
+                    <div class="flex items-center justify-between py-0.5">
+                      <div class="flex items-center gap-2">
+                        <span class="w-5 h-5 rounded-full bg-surface-container border border-outline-variant flex items-center justify-center font-body text-[9px] font-semibold text-on-surface">K</span>
+                        <span class="font-body text-[11px] text-on-surface">Kavya Iyer</span>
+                      </div>
+                      <span class="w-7 h-4 rounded-full bg-primary p-0.5 flex items-center justify-end" aria-label="Present">
+                        <span class="w-3 h-3 rounded-full bg-on-primary"></span>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="w-full rounded-full bg-primary text-on-primary py-1.5 text-center font-body text-[10px] font-medium">
+                    Save attendance
+                  </div>
+                </div>
+              </div>
+              <div class="flex flex-col gap-gutter-xs">
+                <span data-design-text-token="label-sm" class="font-label text-label-sm uppercase text-brand-amber-ink">Daily attendance</span>
+                <h3 class="font-headline text-headline-sm text-on-surface">
+                  <span data-design-text-token="headline-sm">Batch roll call in 30 seconds</span>
+                </h3>
+                <p class="font-body text-body-md text-on-surface-variant text-pretty">
+                  <span data-design-text-token="body-md">Teachers tap present or absent on their phone; parents get instant absence alerts on WhatsApp.</span>
+                </p>
+              </div>
+            </div>
+            <div class="flex flex-wrap gap-gutter-sm pt-gutter-xs">
+              <span data-design-text-token="label-sm" class="rounded-full border border-outline-variant px-3 py-1 font-label text-label-sm text-on-surface-variant">Batch-wise</span>
+              <span data-design-text-token="label-sm" class="rounded-full border border-outline-variant px-3 py-1 font-label text-label-sm text-on-surface-variant">Parent alerts</span>
+            </div>
+          </article>
+
+          <article class="h-full rounded-card border border-outline-variant bg-surface-container-low p-gutter-lg shadow-card flex flex-col justify-between gap-gutter-md">
+            <div class="flex flex-col gap-gutter-md">
+              <div class="w-full rounded-md bg-surface-container border border-outline-variant flex items-center justify-center p-5">
+                <div class="w-[232px] rounded-3xl border-[3px] border-primary bg-white p-3 flex flex-col justify-between gap-2.5">
+                  <div class="pb-1.5 border-b border-outline-variant">
+                    <span class="font-body text-[11px] font-semibold text-on-surface tracking-tight">Track dues</span>
+                  </div>
+                  <div class="rounded-lg bg-surface-container-low border border-outline-variant p-2 flex flex-col gap-1.5">
+                    <span class="font-body text-[9px] uppercase tracking-wider text-on-surface-variant">Summary</span>
+                    <span class="font-body text-[12px] font-bold text-on-surface">Fees Pending</span>
+                    <div class="grid grid-cols-3 gap-1 pt-1 border-t border-outline-variant font-body text-[8.5px] text-on-surface-variant">
+                      <span>24 Active</span>
+                      <span>42 Instalments</span>
+                      <span>1 Receipts</span>
+                    </div>
+                  </div>
+                  <div class="flex flex-col gap-1.5">
+                    <span class="font-body text-[10px] font-medium text-on-surface-variant">Students (2 Unpaid)</span>
+                    <div class="flex items-center justify-between py-0.5">
+                      <span class="font-body text-[11px] text-on-surface">Neha Gupta</span>
+                      <span class="rounded-full bg-brand-amber text-primary px-2 py-0.5 font-body text-[9px] font-semibold">Unpaid</span>
+                    </div>
+                    <div class="flex items-center justify-between py-0.5">
+                      <span class="font-body text-[11px] text-on-surface">Vikram Singh</span>
+                      <span class="rounded-full bg-brand-amber text-primary px-2 py-0.5 font-body text-[9px] font-semibold">Unpaid</span>
+                    </div>
+                  </div>
+                  <div class="w-full rounded-full bg-primary text-on-primary py-1.5 text-center font-body text-[10px] font-medium">
+                    Send UPI Reminders
+                  </div>
+                </div>
+              </div>
+              <div class="flex flex-col gap-gutter-xs">
+                <span data-design-text-token="label-sm" class="font-label text-label-sm uppercase text-brand-amber-ink">Fees &amp; receipts</span>
+                <h3 class="font-headline text-headline-sm text-on-surface">
+                  <span data-design-text-token="headline-sm">Track dues and send receipts</span>
+                </h3>
+                <p class="font-body text-body-md text-on-surface-variant text-pretty">
+                  <span data-design-text-token="body-md">See paid, partial, and overdue instalments at a glance, with automatic UPI &amp; WhatsApp reminders.</span>
+                </p>
+              </div>
+            </div>
+            <div class="flex flex-wrap gap-gutter-sm pt-gutter-xs">
+              <span data-design-text-token="label-sm" class="rounded-full border border-outline-variant px-3 py-1 font-label text-label-sm text-on-surface-variant">Instalments</span>
+              <span data-design-text-token="label-sm" class="rounded-full border border-outline-variant px-3 py-1 font-label text-label-sm text-on-surface-variant">PDF receipts</span>
+            </div>
+          </article>
+
+          <article class="h-full rounded-card border border-outline-variant bg-surface-container-low p-gutter-lg shadow-card flex flex-col justify-between gap-gutter-md">
+            <div class="flex flex-col gap-gutter-md">
+              <div class="w-full rounded-md bg-surface-container border border-outline-variant flex items-center justify-center p-5">
+                <div class="w-[232px] rounded-3xl border-[3px] border-primary bg-white p-3 flex flex-col justify-between gap-2.5">
+                  <div class="pb-1.5 border-b border-outline-variant">
+                    <span class="font-body text-[11px] font-semibold text-on-surface tracking-tight">New Announcement</span>
+                  </div>
+                  <div class="flex flex-col gap-1.5">
+                    <div class="rounded-md border border-outline-variant bg-surface-container-low px-2 py-1.5 font-body text-[10px] text-on-surface">
+                      Topic: Weekly Test Results
+                    </div>
+                    <div class="rounded-md border border-outline-variant bg-surface-container-low px-2 py-1.5 flex items-center justify-between font-body text-[10px] text-on-surface">
+                      <span>To: Batch B &amp; C</span>
+                      <span class="material-symbols-outlined text-[13px] text-on-surface-variant" aria-hidden="true">expand_more</span>
+                    </div>
+                    <div class="rounded-md border border-outline-variant bg-surface-container-low px-2 py-2 font-body text-[9.5px] leading-snug text-on-surface-variant">
+                      The weekly test scores have been published for the weekly test scores...
+                    </div>
+                  </div>
+                  <div class="w-full rounded-full bg-primary text-on-primary py-1.5 text-center font-body text-[10px] font-medium">
+                    Send notification to phone
+                  </div>
+                </div>
+              </div>
+              <div class="flex flex-col gap-gutter-xs">
+                <span data-design-text-token="label-sm" class="font-label text-label-sm uppercase text-brand-amber-ink">Records &amp; notices</span>
+                <h3 class="font-headline text-headline-sm text-on-surface">
+                  <span data-design-text-token="headline-sm">Test marks and batch circulars</span>
+                </h3>
+                <p class="font-body text-body-md text-on-surface-variant text-pretty">
+                  <span data-design-text-token="body-md">Publish holiday notices, timetables, and weekly test scores to every student phone in one tap.</span>
+                </p>
+              </div>
+            </div>
+            <div class="flex flex-wrap gap-gutter-sm pt-gutter-xs">
+              <span data-design-text-token="label-sm" class="rounded-full border border-outline-variant px-3 py-1 font-label text-label-sm text-on-surface-variant">Timetables</span>
+              <span data-design-text-token="label-sm" class="rounded-full border border-outline-variant px-3 py-1 font-label text-label-sm text-on-surface-variant">Test scores</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- PRICING -->
+      <section id="pricing" class="max-w-6xl mx-auto px-page-margin py-section-sm md:py-section border-t border-outline-variant">
+        <div class="flex flex-col gap-gutter-sm mb-gutter-xl max-w-2xl">
+          <div class="flex items-center gap-gutter-sm">
+            <span class="w-6 h-px bg-on-surface shrink-0" aria-hidden="true"></span>
+            <p class="font-label text-label-sm uppercase tracking-widest text-on-surface">
+              <span data-design-text-token="label-sm">PRICING</span>
+            </p>
+          </div>
+          <h2 class="font-headline text-headline-lg-mobile md:text-headline-lg text-on-surface">
+            <span data-design-text-token="headline-lg">Pricing that stays predictable.</span>
+          </h2>
+          <p class="font-body text-body-lg text-on-surface-variant">
+            <span data-design-text-token="body-lg">₹5,499 once. WhatsApp billed monthly, at cost.</span>
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr_1fr] gap-gutter-lg items-stretch">
+          <!-- Card 1: Primary / Highlighted -->
+          <article class="h-full rounded-card border border-outline-variant bg-surface-container-low p-gutter-xl shadow-float flex flex-col justify-between gap-gutter-xl">
+            <div class="flex flex-col gap-gutter-lg">
+              <header class="flex flex-col gap-gutter-xs">
+                <span data-design-text-token="label-sm" class="font-label text-label-sm uppercase text-brand-amber-ink">COMPLETE CENTRE ACCESS</span>
+                <p class="font-headline text-headline-lg-mobile md:text-headline-lg text-brand-amber-large tabular-nums">
+                  <span data-design-text-token="headline-lg">₹5,499</span>
+                </p>
+                <p class="font-body text-body-md text-on-surface-variant text-pretty">
+                  <span data-design-text-token="body-md">One-time payment. Lifetime access to the app.</span>
+                </p>
+              </header>
+              <div class="flex flex-col gap-gutter-md border-t border-outline-variant pt-gutter-lg">
+                <ul class="flex flex-col gap-gutter-sm font-body text-body-md text-on-surface">
+                  <li class="flex items-center gap-gutter-sm">
+                    <span class="material-symbols-outlined text-title-lg text-brand-amber-ink shrink-0" aria-hidden="true">check_circle</span>
+                    <span data-design-text-token="body-md">Student, teacher and owner panels</span>
+                  </li>
+                  <li class="flex items-center gap-gutter-sm">
+                    <span class="material-symbols-outlined text-title-lg text-brand-amber-ink shrink-0" aria-hidden="true">check_circle</span>
+                    <span data-design-text-token="body-md">Attendance, fee tracking and notices</span>
+                  </li>
+                  <li class="flex items-center gap-gutter-sm">
+                    <span class="material-symbols-outlined text-title-lg text-brand-amber-ink shrink-0" aria-hidden="true">check_circle</span>
+                    <span data-design-text-token="body-md">Setup and handover included</span>
+                  </li>
+                  <li class="flex items-center gap-gutter-sm">
+                    <span class="material-symbols-outlined text-title-lg text-brand-amber-ink shrink-0" aria-hidden="true">check_circle</span>
+                    <span data-design-text-token="body-md">Your student data stays yours</span>
+                  </li>
+                </ul>
+                <p class="font-body text-label-sm text-on-surface-variant text-pretty">
+                  <span data-design-text-token="label-sm">WhatsApp messaging is billed monthly, separately. See below.</span>
+                </p>
+              </div>
+            </div>
+            <footer class="flex flex-col gap-gutter-sm">
+              <a href="#contact" class="w-full inline-flex items-center justify-center rounded-full bg-primary text-on-primary px-gutter-lg py-3 font-label text-label-lg hover:bg-inverse-surface transition-colors">
+                <span data-design-text-token="label-lg">Book a free demo</span>
+              </a>
+              <p class="font-body text-label-sm text-on-surface-variant text-center">
+                <span data-design-text-token="label-sm">Free demo first. Pay only after you see it working.</span>
+              </p>
+            </footer>
+          </article>
+
+          <!-- Card 2: Compact Middle Card -->
+          <article class="h-full rounded-card border border-outline-variant bg-surface-container-low p-gutter-lg shadow-card flex flex-col justify-between gap-gutter-lg">
+            <div class="flex flex-col gap-gutter-md">
+              <header class="flex flex-col gap-gutter-xs">
+                <span data-design-text-token="label-sm" class="font-label text-label-sm uppercase text-brand-amber-ink">WHATSAPP MESSAGING</span>
+                <h3 class="font-headline text-headline-sm text-on-surface text-balance">
+                  <span data-design-text-token="headline-sm">Billed monthly, as you use it.</span>
+                </h3>
+                <p class="font-body text-body-md text-on-surface-variant text-pretty">
+                  <span data-design-text-token="body-md">Charged at Meta&#39;s per-message rate. No markup on the Meta rate.</span>
+                </p>
+              </header>
+              <div class="flex flex-col gap-gutter-md border-t border-outline-variant pt-gutter-md">
+                <ul class="flex flex-col gap-gutter-sm font-body text-body-md text-on-surface">
+                  <li class="flex items-start gap-gutter-sm">
+                    <span class="material-symbols-outlined text-title-lg text-brand-amber-ink shrink-0" aria-hidden="true">check_circle</span>
+                    <span data-design-text-token="body-md">Fee reminders, attendance alerts and notices</span>
+                  </li>
+                  <li class="flex items-start gap-gutter-sm">
+                    <span class="material-symbols-outlined text-title-lg text-brand-amber-ink shrink-0" aria-hidden="true">check_circle</span>
+                    <span data-design-text-token="body-md">Monthly usage report with exact message count</span>
+                  </li>
+                  <li class="flex items-start gap-gutter-sm">
+                    <span class="material-symbols-outlined text-title-lg text-brand-amber-ink shrink-0" aria-hidden="true">check_circle</span>
+                    <span data-design-text-token="body-md">Start or stop anytime</span>
+                  </li>
+                </ul>
+                <p class="font-body text-label-sm text-on-surface-variant text-pretty">
+                  <span data-design-text-token="label-sm">A 150-student centre usually pays about ₹300 to ₹600 per month.</span>
+                </p>
+              </div>
+            </div>
+            <footer>
+              <a href="#contact" class="w-full inline-flex items-center justify-center rounded-full border border-outline text-on-surface px-gutter-lg py-3 font-label text-label-lg hover:border-primary hover:bg-surface-container transition-colors text-center">
+                <span data-design-text-token="label-lg">See the cost for your centre</span>
+              </a>
+            </footer>
+          </article>
+
+          <!-- Card 3: Balanced Right Card -->
+          <article class="h-full rounded-card border border-outline-variant bg-surface-container-low p-gutter-lg shadow-card flex flex-col justify-between gap-gutter-lg">
+            <div class="flex flex-col gap-gutter-md">
+              <header class="flex flex-col gap-gutter-xs">
+                <span data-design-text-token="label-sm" class="font-label text-label-sm uppercase text-on-surface-variant">CUSTOM SOLUTION</span>
+                <h3 class="font-headline text-headline-sm text-on-surface text-balance">
+                  <span data-design-text-token="headline-sm">For multi-branch chains.</span>
+                </h3>
+                <p class="font-body text-body-md text-on-surface-variant text-pretty">
+                  <span data-design-text-token="body-md">Per-branch pricing, shared admin panel, custom quote within 2 working days.</span>
+                </p>
+              </header>
+              <ul class="flex flex-col gap-gutter-sm border-t border-outline-variant pt-gutter-md font-body text-body-md text-on-surface">
+                <li class="flex items-start gap-gutter-sm">
+                  <span class="material-symbols-outlined text-title-lg text-brand-amber-ink shrink-0" aria-hidden="true">check_circle</span>
+                  <span data-design-text-token="body-md">Unified multi-branch owner view</span>
+                </li>
+                <li class="flex items-start gap-gutter-sm">
+                  <span class="material-symbols-outlined text-title-lg text-brand-amber-ink shrink-0" aria-hidden="true">check_circle</span>
+                  <span data-design-text-token="body-md">Custom institute branding &amp; setup</span>
+                </li>
+                <li class="flex items-start gap-gutter-sm">
+                  <span class="material-symbols-outlined text-title-lg text-brand-amber-ink shrink-0" aria-hidden="true">check_circle</span>
+                  <span data-design-text-token="body-md">Dedicated onboarding support</span>
+                </li>
+              </ul>
+            </div>
+            <footer>
+              <a href="#contact" class="w-full inline-flex items-center justify-center rounded-full border border-outline text-on-surface px-gutter-lg py-3 font-label text-label-lg hover:border-primary hover:bg-surface-container transition-colors text-center">
+                <span data-design-text-token="label-lg">Contact for custom quote</span>
+              </a>
+            </footer>
+          </article>
+        </div>
+      </section>
+
+      <!-- DATA SAFETY -->
+      <section id="security" class="max-w-6xl mx-auto px-page-margin py-section-sm md:py-section border-t border-outline-variant">
+        <div class="rounded-card border border-outline-variant bg-surface-container-low p-gutter-xl shadow-card grid grid-cols-1 md:grid-cols-12 gap-gutter-lg items-center">
+          <div class="md:col-span-4 flex flex-col gap-gutter-sm">
+            <div class="flex items-center gap-gutter-sm">
+              <span class="w-6 h-px bg-on-surface shrink-0" aria-hidden="true"></span>
+              <p class="font-label text-label-sm uppercase tracking-widest text-on-surface">
+                <span data-design-text-token="label-sm">SECURITY</span>
+              </p>
+            </div>
+            <h2 class="font-headline text-headline-lg-mobile md:text-headline-lg text-on-surface">
+              <span data-design-text-token="headline-lg">Your data, safe.</span>
+            </h2>
+          </div>
+          <div class="md:col-span-8">
+            <p class="font-body text-body-lg text-on-surface-variant text-pretty">
+              <span data-design-text-token="body-lg">Student records are stored on secure cloud servers (MongoDB Atlas / AWS). Only you and your teachers can access them. Backups happen automatically every day.</span>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section id="faq" class="max-w-6xl mx-auto px-page-margin py-section-sm md:py-section border-t border-outline-variant">
+        <div class="max-w-3xl flex flex-col gap-gutter-sm mb-gutter-xl">
+          <div class="flex items-center gap-gutter-sm">
+            <span class="w-6 h-px bg-on-surface shrink-0" aria-hidden="true"></span>
+            <p class="font-label text-label-sm uppercase tracking-widest text-on-surface">
+              <span data-design-text-token="label-sm">FAQ</span>
+            </p>
+          </div>
+          <h2 class="font-headline text-headline-lg-mobile md:text-headline-lg text-on-surface">
+            <span data-design-text-token="headline-lg">Frequently asked questions</span>
+          </h2>
+        </div>
+
+        <div class="border-t border-outline-variant">
+            <details class="group border-b border-outline-variant py-gutter-lg" open>
+              <summary class="flex items-center justify-between gap-gutter-md cursor-pointer list-none select-none">
+                <span data-design-text-token="title-lg" class="font-title text-title-lg text-on-surface">Teacher ko training chahiye?</span>
+                <span class="font-mono text-mono-md text-on-surface-variant transition-transform group-open:rotate-45 shrink-0" aria-hidden="true">+</span>
+              </summary>
+              <div class="pt-gutter-sm pr-gutter-xl">
+                <p data-design-text-token="body-md" class="font-body text-body-md text-on-surface-variant">Teachers learn the app in about 15 minutes.</p>
+              </div>
+            </details>
+
+            <details class="group border-b border-outline-variant py-gutter-lg">
+              <summary class="flex items-center justify-between gap-gutter-md cursor-pointer list-none select-none">
+                <span data-design-text-token="title-lg" class="font-title text-title-lg text-on-surface">Internet nahi ho to?</span>
+                <span class="font-mono text-mono-md text-on-surface-variant transition-transform group-open:rotate-45 shrink-0" aria-hidden="true">+</span>
+              </summary>
+              <div class="pt-gutter-sm pr-gutter-xl">
+                <p data-design-text-token="body-md" class="font-body text-body-md text-on-surface-variant">Yes. Attendance is saved offline on the phone and syncs automatically when internet returns.</p>
+              </div>
+            </details>
+
+            <details class="group border-b border-outline-variant py-gutter-lg">
+              <summary class="flex items-center justify-between gap-gutter-md cursor-pointer list-none select-none">
+                <span data-design-text-token="title-lg" class="font-title text-title-lg text-on-surface">Parents ko kya dikhega?</span>
+                <span class="font-mono text-mono-md text-on-surface-variant transition-transform group-open:rotate-45 shrink-0" aria-hidden="true">+</span>
+              </summary>
+              <div class="pt-gutter-sm pr-gutter-xl">
+                <p data-design-text-token="body-md" class="font-body text-body-md text-on-surface-variant">Attendance, notices and their child&#39;s own details.</p>
+              </div>
+            </details>
+
+            <details class="group border-b border-outline-variant py-gutter-lg">
+              <summary class="flex items-center justify-between gap-gutter-md cursor-pointer list-none select-none">
+                <span data-design-text-token="title-lg" class="font-title text-title-lg text-on-surface">Data kahan store hota hai?</span>
+                <span class="font-mono text-mono-md text-on-surface-variant transition-transform group-open:rotate-45 shrink-0" aria-hidden="true">+</span>
+              </summary>
+              <div class="pt-gutter-sm pr-gutter-xl">
+                <p data-design-text-token="body-md" class="font-body text-body-md text-on-surface-variant">Student records are stored on secure cloud servers. Only you and your authorized staff have access.</p>
+              </div>
+            </details>
+        </div>
+      </section>
+
+      <!-- FINAL CTA -->
+      <section id="contact" class="max-w-6xl mx-auto px-page-margin py-section-sm md:py-section border-t border-outline-variant">
+        <div class="rounded-card bg-primary text-on-primary p-gutter-xl md:p-section-sm shadow-float flex flex-col md:flex-row md:items-center justify-between gap-gutter-xl">
+          <div class="max-w-xl flex flex-col gap-gutter-sm">
+            <h2 class="font-headline text-headline-lg-mobile md:text-headline-lg text-inverse-on-surface text-balance">
+              <span data-design-text-token="headline-lg">Your coaching, on your phone.</span>
+            </h2>
+            <p class="font-body text-body-lg text-inverse-muted text-pretty">
+              <span data-design-text-token="body-lg">See it working in your centre. We set it up with you.</span>
+            </p>
+          </div>
+
+          <div class="shrink-0 flex flex-col items-start md:items-end gap-gutter-sm">
+            <a href="mailto:thelabworkteam@gmail.com" class="inline-flex items-center justify-center gap-gutter-sm rounded-full bg-brand-amber text-primary px-gutter-xl py-3.5 font-label text-label-lg hover:bg-on-primary transition-colors">
+              <span data-design-text-token="label-lg">Book a free demo</span>
+              <span class="material-symbols-outlined text-title-lg" aria-hidden="true">arrow_forward</span>
+            </a>
+            <p class="font-body text-label-sm text-inverse-muted">
+              <span data-design-text-token="label-sm">thelabworkteam@gmail.com · @the.labwork</span>
+            </p>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- WHATSAPP RATE DISCLAIMER -->
+    <div class="max-w-6xl mx-auto px-page-margin pb-gutter-xl">
+      <p class="font-body text-label-sm text-on-surface-variant text-center text-pretty">
+        <span data-design-text-token="label-sm">Meta&#39;s WhatsApp rates change from time to time. The rate shown in your monthly usage report is the rate you pay.</span>
+      </p>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-outline-variant">
+      <div class="max-w-6xl mx-auto px-page-margin py-gutter-xl flex flex-col md:flex-row md:items-center justify-between gap-gutter-md">
+        <p class="font-body text-body-md text-on-surface-variant">
+          <span data-design-text-token="body-md">© 2026 TheLabWork. Built for coaching centres in India.</span>
+        </p>
+        <div class="flex flex-wrap items-center gap-gutter-sm font-body text-body-md text-on-surface-variant">
+          <a href="mailto:thelabworkteam@gmail.com" class="hover:text-on-surface transition-colors">
+            <span data-design-text-token="body-md">Email</span>
+          </a>
+          <span aria-hidden="true">·</span>
+          <a href="https://instagram.com/the.labwork" target="_blank" rel="noopener noreferrer" class="hover:text-on-surface transition-colors">
+            <span data-design-text-token="body-md">Instagram</span>
+          </a>
+          <span aria-hidden="true">·</span>
+          <a href="#security" class="hover:text-on-surface transition-colors">
+            <span data-design-text-token="body-md">Privacy</span>
+          </a>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+
+</body></html>

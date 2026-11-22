@@ -1,0 +1,51 @@
+@import "tailwindcss";
+
+@theme {
+  --color-surface: #F7F4EC;
+  --color-surface-container-low: #FBF9F4;
+  --color-surface-container: #EAE3D2;
+  --color-on-surface: #1A1A1A;
+  --color-on-surface-variant: #57534B;
+  --color-primary: #1A1A1A;
+  --color-primary-hover: #33312D;
+  --color-on-primary: #FFFFFF;
+  --color-brand-amber: #F39200;
+  --color-brand-amber-large: #C27000;
+  --color-brand-amber-ink: #9A5A00;
+  --color-cream-tape: #E8DFCA;
+  --color-outline: #57534B;
+  --color-outline-variant: #DDD7C8;
+  --color-inverse-surface: #1A1A1A;
+  --color-inverse-on-surface: #F7F4EC;
+  --color-inverse-muted: #C8C3B8;
+
+  --font-display: "Crimson Pro", Georgia, serif;
+  --font-headline: "Crimson Pro", Georgia, serif;
+  --font-title: "Commissioner", sans-serif;
+  --font-body: "Commissioner", sans-serif;
+  --font-label: "Commissioner", sans-serif;
+  --font-mono: "Source Code Pro", monospace;
+  --font-handwritten: "Patrick Hand", cursive;
+
+  --radius-card: 18px;
+  --shadow-card: 0 12px 32px -12px rgba(26, 26, 26, 0.10);
+  --shadow-float: 0 20px 44px -12px rgba(27, 59, 43, 0.24);
+  --shadow-note: 0 10px 24px -8px rgba(26, 26, 26, 0.14);
+}
+
+@layer base {
+  body {
+    background-color: var(--color-surface);
+    color: var(--color-on-surface);
+    font-family: var(--font-body);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
